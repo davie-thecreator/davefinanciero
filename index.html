@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Davefinanciero · David Zepeda | Asesor Financiero</title>
+  <meta name="description" content="Asesor financiero en Puebla. Seguros, ahorro e inversión explicados sin tecnicismos. Agente certificado de seguros y fianzas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #08090D;
+      --bg2:       #0F1218;
+      --bg3:       #0C1016;
+      --green:     #00D97E;
+      --green-dim: rgba(0,217,126,0.12);
+      --green-mid: rgba(0,217,126,0.3);
+      --white:     #FFFFFF;
+      --t1:        #E8EFF8;
+      --t2:        #8A9BB0;
+      --t3:        #556070;
+      --border:    rgba(255,255,255,0.08);
+      --border2:   rgba(255,255,255,0.13);
+      --radius:    12px;
+      --radius-sm: 8px;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--t1);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Navbar ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: rgba(8,9,13,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.3px;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--green); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--t2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--bg);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      display: inline-block;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--t2);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── Mobile menu ── */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg2);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      padding: 14px 24px;
+      font-size: 14px;
+      color: var(--t2);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--border);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--white); }
+    .mobile-menu .mobile-cta {
+      margin: 16px 24px 20px;
+      background: var(--green);
+      color: var(--bg);
+      font-weight: 700;
+      text-align: center;
+      border-radius: var(--radius-sm);
+      border-bottom: none;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 96px 40px 72px;
+      max-width: 780px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-dim);
+      border: 0.5px solid var(--green-mid);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(40px, 6vw, 68px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .hero h1 .accent { color: var(--green); }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--t2);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--bg);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 13px 22px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.07);
+      color: var(--t1);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 13px 22px;
+      border-radius: var(--radius-sm);
+      border: 0.5px solid var(--border2);
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.11); }
+
+    /* ── Stats ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 0 40px 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .stat {
+      background: var(--bg2);
+      padding: 22px 24px;
+    }
+    .stat-num {
+      font-family: var(--font-head);
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -1px;
+    }
+    .stat-num span { color: var(--green); }
+    .stat-label {
+      font-size: 13px;
+      color: var(--t2);
+      margin-top: 4px;
+    }
+
+    /* ── Sections ── */
+    .section {
+      padding: 64px 40px;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-h2 {
+      font-family: var(--font-head);
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.1;
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: var(--t2);
+      margin-bottom: 32px;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    /* ── Service cards ── */
+    .grid-main {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .svc-card {
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .svc-card:hover { border-color: var(--border2); }
+    .svc-card.featured { border-color: var(--green-mid); }
+
+    .featured-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-dim);
+      border: 0.5px solid var(--green-mid);
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    .svc-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--green-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .svc-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 7px;
+    }
+
+    .svc-desc {
+      font-size: 13px;
+      color: var(--t2);
+      line-height: 1.65;
+    }
+
+    .svc-arrow {
+      font-size: 13px;
+      color: var(--green);
+      font-weight: 600;
+      margin-top: 14px;
+      display: block;
+      text-decoration: none;
+    }
+    .svc-arrow:hover { opacity: 0.8; }
+
+    /* ── Extras ── */
+    .extras-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--t3);
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .extras-label::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: var(--border);
+    }
+
+    .extras-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .extra-card {
+      background: #0D1117;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      transition: border-color 0.2s;
+    }
+    .extra-card:hover { border-color: var(--border2); }
+
+    .extra-icon {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 7px;
+      background: rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .extra-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #C8D8E8;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+    .extra-desc {
+      font-size: 11px;
+      color: var(--t3);
+      line-height: 1.4;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 0.5px;
+      background: var(--border);
+      margin: 0 40px;
+    }
+
+    /* ── Coaching ── */
+    .coaching-section {
+      padding: 64px 40px;
+      background: var(--bg3);
+    }
+
+    .coaching-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .coach-card {
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .coach-card.highlight { border-color: var(--green-mid); }
+
+    .coach-num {
+      font-family: var(--font-head);
+      font-size: 40px;
+      font-weight: 800;
+      color: rgba(0,217,126,0.12);
+      letter-spacing: -2px;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .coach-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .coach-desc {
+      font-size: 13px;
+      color: var(--t2);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .coach-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .coach-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      color: var(--t2);
+    }
+
+    .coach-check {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      border-radius: 50%;
+      background: var(--green-dim);
+      border: 0.5px solid var(--green-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coach-arrow {
+      font-size: 13px;
+      color: var(--green);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .coach-arrow:hover { opacity: 0.8; }
+
+    .coach-cta-row {
+      background: var(--bg2);
+      border: 0.5px solid rgba(0,217,126,0.18);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .coach-cta-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--t1);
+      margin-bottom: 3px;
+    }
+    .coach-cta-sub {
+      font-size: 12px;
+      color: var(--t3);
+    }
+
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--green);
+      color: var(--bg);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .wa-btn:hover { opacity: 0.85; }
+    .wa-btn svg { width: 18px; height: 18px; }
+
+    /* ── Process ── */
+    .process {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--green);
+      min-width: 24px;
+      margin-top: 2px;
+    }
+
+    .step-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 5px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--t2);
+      line-height: 1.65;
+    }
+
+    /* ── CTA Final ── */
+    .cta-block {
+      margin: 0 40px 40px;
+      background: var(--bg2);
+      border: 0.5px solid var(--green-mid);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .cta-h {
+      font-family: var(--font-head);
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+
+    .cta-sub {
+      font-size: 15px;
+      color: var(--t2);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .cta-chips {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .cta-chip {
+      font-size: 12px;
+      color: var(--green);
+      background: var(--green-dim);
+      border: 0.5px solid var(--green-mid);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 24px 40px;
+      border-top: 0.5px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--green); }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: var(--t3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--t2); }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--t3);
+      width: 100%;
+      text-align: center;
+      margin-top: 8px;
+      padding-top: 16px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .hero { padding: 60px 20px 48px; }
+      .stats { margin: 0 20px; grid-template-columns: 1fr; }
+      .section { padding: 48px 20px; }
+      .coaching-section { padding: 48px 20px; }
+      .divider { margin: 0 20px; }
+
+      .grid-main { grid-template-columns: 1fr; }
+      .coaching-grid { grid-template-columns: 1fr; }
+      .extras-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .cta-block { margin: 0 20px 32px; padding: 32px 24px; }
+      footer { padding: 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .extras-grid { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-secondary { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="#" class="nav-logo">dave<span>financiero</span></a>
+    <ul class="nav-links">
+      <li><a href="#seguros">Seguros</a></li>
+      <li><a href="#coaching">Coaching</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="https://wa.me/522221862400?text=Hola%20David%2C%20quiero%20una%20coti%20gratis" target="_blank" class="nav-cta">Cotizar gratis</a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#seguros" onclick="toggleMenu()">Seguros</a>
+    <a href="#coaching" onclick="toggleMenu()">Coaching financiero</a>
+    <a href="#proceso" onclick="toggleMenu()">Proceso</a>
+    <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+    <a href="https://wa.me/522221862400?text=Hola%20David%2C%20quiero%20una%20coti%20gratis" class="mobile-cta" target="_blank">Cotizar gratis por WhatsApp</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Asesor financiero · Puebla, México
+    </div>
+    <h1>Tu dinero debería<br>trabajar <span class="accent">para ti.</span></h1>
+    <p>Seguros, ahorro e inversión explicados sin tecnicismos. Te ayudo a proteger lo que más valoras y a construir tu futuro financiero desde hoy.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/522221862400?text=Hola%20David%2C%20quiero%20una%20coti%20gratis" target="_blank" class="btn-primary">Quiero mi cotización gratis</a>
+      <a href="#seguros" class="btn-secondary">Ver mis servicios</a>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">5<span>+</span></div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num"><span>+</span>100</div>
+      <div class="stat-label">Clientes protegidos</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-label">Asesoría personalizada</div>
+    </div>
+  </div>
+
+  <!-- Seguros -->
+  <section class="section" id="seguros">
+    <div class="section-tag">Seguros</div>
+    <h2 class="section-h2">Todo lo que necesitas,<br>en un solo lugar.</h2>
+    <p class="section-sub">Agente certificado de seguros y fianzas. Te ayudo a elegir la cobertura correcta, sin presión ni letra chica.</p>
+
+    <div class="grid-main">
+      <div class="svc-card featured">
+        <div class="featured-badge">Mi especialidad</div>
+        <div class="svc-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00D97E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="svc-title">Ahorro e inversión</div>
+        <div class="svc-desc">Haz crecer tu dinero con seguridad. Planes de ahorro y retiro desde tu primera quincena.</div>
+        <a href="https://wa.me/522221862400?text=Hola%20David%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20ahorro%20e%20inversi%C3%B3n" target="_blank" class="svc-arrow">Ver planes →</a>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00D97E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="svc-title">Gastos médicos mayores</div>
+        <div class="svc-desc">Cobertura real en hospitalizaciones y emergencias para ti y tu familia.</div>
+        <a href="https://wa.me/522221862400?text=Hola%20David%2C%20me%20interesa%20un%20seguro%20de%20gastos%20m%C3%A9dicos%20mayores" target="_blank" class="svc-arrow">Ver coberturas →</a>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00D97E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8zM5.5 21a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+        </div>
+        <div class="svc-title">Seguro de auto</div>
+        <div class="svc-desc">Maneja tranquilo con la cobertura que realmente necesitas, al precio correcto.</div>
+        <a href="https://wa.me/522221862400?text=Hola%20David%2C%20me%20interesa%20un%20seguro%20de%20auto" target="_blank" class="svc-arrow">Ver coberturas →</a>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00D97E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="svc-title">Seguro de vida</div>
+        <div class="svc-desc">Protege a quien más amas con respaldo económico garantizado cuando más lo necesiten.</div>
+        <a href="https://wa.me/522221862400?text=Hola%20David%2C%20me%20interesa%20un%20seguro%20de%20vida" target="_blank" class="svc-arrow">Ver planes →</a>
+      </div>
+    </div>
+
+    <div class="extras-label">También manejo</div>
+    <div class="extras-grid">
+      <div class="extra-card">
+        <div class="extra-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5A7A9A" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <div><div class="extra-title">Daños empresariales</div><div class="extra-desc">Protege tu negocio</div></div>
+      </div>
+      <div class="extra-card">
+        <div class="extra-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5A7A9A" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div><div class="extra-title">RC Contratista</div><div class="extra-desc">Responsabilidad civil</div></div>
+      </div>
+      <div class="extra-card">
+        <div class="extra-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5A7A9A" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/></svg></div>
+        <div><div class="extra-title">Flotilla</div><div class="extra-desc">Vehículos de empresa</div></div>
+      </div>
+      <div class="extra-card">
+        <div class="extra-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5A7A9A" stroke-width="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/></svg></div>
+        <div><div class="extra-title">Tractocamiones</div><div class="extra-desc">Transporte de carga</div></div>
+      </div>
+      <div class="extra-card">
+        <div class="extra-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5A7A9A" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+        <div><div class="extra-title">Mascotas</div><div class="extra-desc">Salud de tu compañero</div></div>
+      </div>
+      <div class="extra-card" style="border-color: rgba(0,217,126,0.2);">
+        <div class="extra-icon" style="background: rgba(0,217,126,0.08);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00D97E" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+        <div>
+          <div class="extra-title" style="color:#00D97E;">¿Necesitas otro?</div>
+          <div class="extra-desc"><a href="https://wa.me/522221862400?text=Hola%20David%2C%20necesito%20informaci%C3%B3n%20sobre%20un%20seguro" target="_blank" style="color:#556070; text-decoration:none;">Escríbeme directo</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Coaching -->
+  <section class="coaching-section" id="coaching">
+    <div class="section-tag">Coaching financiero</div>
+    <h2 class="section-h2">Aprende a manejar<br>tu dinero de verdad.</h2>
+    <p class="section-sub">Sesiones personalizadas 1 a 1 por WhatsApp o videollamada. Sin cursos grabados, sin grupos masivos — solo tú y yo trabajando tu situación real.</p>
+
+    <div class="coaching-grid">
+      <div class="coach-card highlight">
+        <div class="coach-num">01</div>
+        <div class="coach-title">Finanzas personales básicas</div>
+        <div class="coach-desc">Para quien quiere empezar desde cero o resetear sus hábitos de dinero.</div>
+        <div class="coach-includes">
+          <div class="coach-item">
+            <div class="coach-check"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="#00D97E" stroke-width="2.5"><polyline points="2,5 4,7 8,3"/></svg></div>
+            Presupuesto mensual real
+          </div>
+          <div class="coach-item">
+            <div class="coach-check"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="#00D97E" stroke-width="2.5"><polyline points="2,5 4,7 8,3"/></svg></div>
+            Fondo de emergencia
+          </div>
+          <div class="coach-item">
+            <div class="coach-check"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="#00D97E" stroke-width="2.5"><polyline points="2,5 4,7 8,3"/></svg></div>
+            Hábitos de ahorro desde hoy
+          </div>
+          <div class="coach-item">
+            <div class="coach-check"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="#00D97E" stroke-width="2.5"><polyline points="2,5 4,7 8,3"/></svg></div>
+            Primeros pasos para invertir
+          </div>
+        </div>
+        <a href="https://wa.me/522221862400?text=Hola%20David%2C%20me%20interesa%20el%20coaching%20de%20finanzas%20personales" target="_blank" class="coach-arrow">Quiero empezar →</a>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-num">02</div>
+        <div class="coach-title">Planeación de retiro</div>
+        <div class="coach-desc">Para quien quiere asegurar su futuro y no depender solo del IMSS o ISSSTE.</div>
+        <div class="coach-includes">
+          <div class="coach-item">
+            <div class="coach-check"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="#00D97E" stroke-width="2.5"><polyline points="2,5 4,7 8,3"/></svg></div>
+            Diagnóstico de tu situación actual
+          </div>
+          <div class="coach-item">
+            <div class="coach-check"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="#00D97E" stroke-width="2.5"><polyline points="2,5 4,7 8,3"/></svg></div>
+            Plan personalizado de ahorro
+          </div>
+          <div class="coach-item">
+            <div class="coach-check"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="#00D97E" stroke-width="2.5"><polyline points="2,5 4,7 8,3"/></svg></div>
+            Opciones de seguros de retiro
+          </div>
+          <div class="coach-item">
+            <div class="coach-check"><svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="#00D97E" stroke-width="2.5"><polyline points="2,5 4,7 8,3"/></svg></div>
+            Seguimiento cada 3 meses
+          </div>
+        </div>
+        <a href="https://wa.me/522221862400?text=Hola%20David%2C%20me%20interesa%20planear%20mi%20retiro" target="_blank" class="coach-arrow">Quiero planear mi retiro →</a>
+      </div>
+    </div>
+
+    <div class="coach-cta-row">
+      <div>
+        <div class="coach-cta-text">¿No sabes cuál es para ti?</div>
+        <div class="coach-cta-sub">Platícame tu situación y te digo qué necesitas · Gratis · Sin compromiso</div>
+      </div>
+      <a href="https://wa.me/522221862400?text=Hola%20David%2C%20no%20s%C3%A9%20por%20d%C3%B3nde%20empezar%2C%20%C2%BFme%20puedes%20orientar%3F" target="_blank" class="wa-btn">
+        <svg viewBox="0 0 24 24" fill="#08090D" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.83L.057 23.07a.75.75 0 0 0 .916.916l5.24-1.466A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.694 9.694 0 0 1-4.964-1.362l-.355-.214-3.682 1.03 1.03-3.682-.214-.355A9.694 9.694 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+        Hablar con David
+      </a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Proceso -->
+  <section class="section" id="proceso">
+    <div class="section-tag">Proceso</div>
+    <h2 class="section-h2">Así de simple.</h2>
+    <p class="section-sub">Sin formularios interminables ni letras chicas.</p>
+    <div class="process">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Me contactas por WhatsApp</div>
+          <div class="step-desc">Sin compromiso. Me cuentas qué necesitas en menos de 5 minutos.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Te presento opciones claras</div>
+          <div class="step-desc">Sin tecnicismos. Te explico qué cubre cada opción y cuánto cuesta.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Elegimos juntos</div>
+          <div class="step-desc">Tú decides. Yo te acompaño en todo el proceso de contratación.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Seguimiento continuo</div>
+          <div class="step-desc">No desaparezco después de la venta. Estoy aquí cuando me necesites.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <div class="cta-block" id="contacto">
+    <h2 class="cta-h">¿Listo para proteger<br>tu futuro?</h2>
+    <p class="cta-sub">Una llamada de 15 minutos puede cambiar la seguridad<br>financiera de tu familia para siempre.</p>
+    <div class="cta-chips">
+      <span class="cta-chip">Asesoría gratuita</span>
+      <span class="cta-chip">Sin compromiso</span>
+      <span class="cta-chip">Respuesta en &lt; 1 hora</span>
+    </div>
+    <a href="https://wa.me/522221862400?text=Hola%20David%2C%20quiero%20una%20asesor%C3%ADa%20gratuita" target="_blank" class="btn-primary">Hablar con David en WhatsApp</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <a href="#" class="footer-logo">dave<span>financiero</span></a>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/davefinanciero/" target="_blank">Instagram</a>
+      <a href="https://wa.me/522221862400" target="_blank">WhatsApp</a>
+      <a href="#">Aviso de privacidad</a>
+    </div>
+    <div class="footer-copy">© 2026 Davefinanciero · David Zepeda · Asesor Financiero · Puebla, México</div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    }
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
